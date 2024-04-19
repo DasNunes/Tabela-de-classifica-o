@@ -10,11 +10,32 @@ function exibirJogadoresNaTela() {
         construindoTabela = construindoTabela + "<td>" + jogadores[i].empates + "</td>";
         construindoTabela = construindoTabela + "<td>" + jogadores[i].derrotas + "</td>";
         construindoTabela = construindoTabela + "<td>" + jogadores[i].pontos + "</td>";
-        construindoTabela = construindoTabela + "<td> <button>Vitoria</button> </td>";
-        construindoTabela = construindoTabela + "<td> <button>Empate</button> </td>";
-        construindoTabela = construindoTabela + "<td> <button>Derrota</button> </td></tr>";
+        construindoTabela = construindoTabela + "<td> <button onClick='adicionarVitoria(" + i + ")'>Vitoria</button> </td>";
+        construindoTabela = construindoTabela + "<td> <button onClick='adicionarEmpate(" + i + ")'>Empate</button> </td>";
+        construindoTabela = construindoTabela + "<td> <button onClick='adicionarDerrota(" + i + ")'>Derrota</button> </td></tr>";
     }
     var corpoDaTabela = document.getElementById('corpoDaTabela')   
     corpoDaTabela.innerHTML = construindoTabela
 }   
 exibirJogadoresNaTela()
+
+function adicionarVitoria(PosicaoDoJogador) {
+   var jogador = jogadores[PosicaoDoJogador]  
+   jogador.vitorias++
+   jogador.pontos = calcularPontos(jogador)
+
+   exibirJogadoresNaTela()
+}
+
+function adicionarEmpate() {
+
+}
+
+function adicionarDerrota() {
+
+}
+
+function calcularPontos(player) {
+    var pontos = player.vitorias * 3 + player.empates
+    return pontos
+}
